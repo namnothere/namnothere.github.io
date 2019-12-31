@@ -1,0 +1,11 @@
+footer {
+  bottom: 0;
+  left: 0;
+  position: fixed;
+  text-align: center;
+  width: 100%;
+  z-index: -1;
+}
+footer h1 {
+  margin: 0;
+}
