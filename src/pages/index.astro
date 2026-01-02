@@ -1,13 +1,15 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import { Calendar, Clock, MapPin } from "lucide-astro";
-import { Image } from "@astrojs/image/components";
+// import { Image } from "@astrojs/image/components";
+import { Image } from 'astro:assets';
 
 const filters = [
     { label: 'All', icon: '📦', active: true },
     { label: 'Keebs', icon: '⌨️', active: false },
     { label: 'Reads', icon: '📚', active: false },
-    { label: 'Gaming', icon: '🎮', active: false }
+    { label: 'Gaming', icon: '🎮', active: false },
+    { label: 'Wibu', icon: '🐧', active: false }
 ];
 type IconKey = "calendar" | "clock" | "map-pin";
 const ceremonyDetails: {
@@ -29,71 +31,82 @@ const iconMap = {
 
 const cards = [
     {
-        label: 'PRIORITY',
-        badge: 'HARDWARE',
-        title: 'Keychron Q1 Pro Wireless',
-        description: '75% layout. Creamy switches needed.',
+        label: 'Keebs',
+        badge: 'Toy',
+        title: 'Keycaps ABS/PBT',
+        description: '1 ngon ngu en/2 ngon ngu en/jp. prefer blue/yellow/white mix',
         tone: 'bg-[#fff8e3] border-[#ffe5b0]',
         labelTone: 'bg-[#ffe8b1] text-[#a25803]',
         badgeTone: 'bg-[#f5efe4] text-[#7a624c]',
-        image: 'https://images.unsplash.com/photo-1527430253228-e93688616381?auto=format&fit=crop&w=900&q=60',
+        image: '/images/book.jpg',
         category: 'Keebs'
     },
     {
-        label: 'EDU',
-        badge: 'Paperback',
-        title: 'Designing Data-Intensive Apps',
+        label: 'Book',
+        badge: 'hong biet nua',
+        title: 'Sach ki thuat',
         description: 'Backend bible. Paperback.',
         tone: 'bg-[#e5f0ff] border-[#cfe3ff]',
         labelTone: 'bg-[#d6e7ff] text-[#194177]',
         badgeTone: 'bg-[#eef5ff] text-[#3a4a6a]',
-        image: 'https://images.unsplash.com/photo-1513475382585-d06e58bcb0ea?auto=format&fit=crop&w=900&q=60',
+        image: '/images/book.jpg',
         category: 'Reads'
     },
     {
-        label: 'GRAIL',
-        badge: 'Collect',
-        title: 'Hololive Nendoroid',
-        description: 'Gen 3 member preferred.',
+        label: 'Wibu',
+        badge: 'Figure',
+        title: 'Saba/Gura/Matsuri',
+        description: 'standee/figure/card/lot chuot/etc cai gi cung duoc chi can co hinh may con nho anime',
         tone: 'bg-[#ffeef9] border-[#ffd1ea]',
         labelTone: 'bg-[#ffd4eb] text-[#8f3a82]',
         badgeTone: 'bg-[#f4e2ef] text-[#7a4a69]',
-        image: 'https://images.unsplash.com/photo-1602524205784-5a2ea41d9d11?auto=format&fit=crop&w=900&q=60',
-        category: 'Gaming'
-    },
-    {
-        label: 'READ',
-        badge: 'Manga',
-        title: 'Chainsaw Man Box Set',
-        description: 'Vols 1-11. Physical copy.',
-        tone: 'bg-[#e1fcdf] border-[#cdeac7]',
-        labelTone: 'bg-[#d9f3d8] text-[#1a6c37]',
-        badgeTone: 'bg-[#f1fbef] text-[#3e6f55]',
-        image: 'https://images.unsplash.com/photo-1470229538611-16ba8c7ffbd7?auto=format&fit=crop&w=900&q=60',
-        category: 'Reads'
+        image: '/images/2b.jpg',
+        category: 'Wibu'
     },
     {
         label: 'SETUP',
         badge: 'Purple / Black',
-        title: 'Coiled Aviator Cable',
-        description: 'Purple/Black colorway.',
+        title: 'Switch mang',
+        description: 'tai mang wifi hoi lo',
         tone: 'bg-[#ecebff] border-[#d0ceff]',
         labelTone: 'bg-[#dcdcff] text-[#2b2a6a]',
         badgeTone: 'bg-[#f1efff] text-[#4a427f]',
-        image: 'https://images.unsplash.com/photo-1527443224151-3f51cc3c0e66?auto=format&fit=crop&w=900&q=60',
+        image: '/images/2b.jpg',
         category: 'Keebs'
     },
     {
-        label: 'SAFE',
+        label: 'GAME',
         badge: 'Gift Card',
         title: 'Steam Gift Card',
-        description: 'For upcoming sales.',
+        description: 'mua gameeeeeeeeee',
         tone: 'bg-[#e8f1ff] border-[#c8d8ef]',
         labelTone: 'bg-[#dbe8ff] text-[#224d8c]',
         badgeTone: 'bg-[#f0f4ff] text-[#5a6990]',
-        image: 'https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=900&q=60',
+        image: '/images/lord_gaben.jpg',
         category: 'Gaming'
-    }
+    },
+    {
+        label: 'GAME',
+        badge: 'nintendo',
+        title: 'Bayonetta',
+        description: 'bayonetta hot',
+        tone: 'bg-[#e8f1ff] border-[#c8d8ef]',
+        labelTone: 'bg-[#dbe8ff] text-[#224d8c]',
+        badgeTone: 'bg-[#f0f4ff] text-[#5a6990]',
+        image: '/images/bayonetta.jpg',
+        category: 'Gaming'
+    },
+    {
+        label: 'GAME',
+        badge: 'square',
+        title: 'NieR:Automata™',
+        description: '2B hot',
+        tone: 'bg-[#e8f1ff] border-[#c8d8ef]',
+        labelTone: 'bg-[#dbe8ff] text-[#224d8c]',
+        badgeTone: 'bg-[#f0f4ff] text-[#5a6990]',
+        image: '/images/2b.jpg',
+        category: 'Gaming'
+    },
 ];
 ---
 
