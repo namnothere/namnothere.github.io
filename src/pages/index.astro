@@ -1,7 +1,6 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import { Calendar, Clock, MapPin } from "lucide-astro";
-// import { Image } from "@astrojs/image/components";
 import { Image } from 'astro:assets';
 
 const filters = [
@@ -29,16 +28,50 @@ const iconMap = {
   'map-pin': MapPin,
 };
 
-const cards = [
+const cards: {
+    label: string;
+    badge: string;
+    title: string;
+    description: string;
+    descriptionHtml?: string;
+    tone: string;
+    labelTone: string;
+    badgeTone: string;
+    image: string;
+    category: string;
+    media?: {
+        type: string;
+        images: string[];
+    };
+}[] = [
     {
         label: 'Keebs',
         badge: 'Toy',
         title: 'Keycaps ABS/PBT',
         description: '1 ngon ngu en/2 ngon ngu en/jp. prefer blue/yellow/white mix',
+        descriptionHtml:
+            '<li>ABS base + PBT top for a satisfying press</li>' +
+            '<li>Dual English/Japanese legends for multilingual layers</li>' +
+            '<li>Blue, yellow, and white mix for a playful theme</li>',
         tone: 'bg-[#fff8e3] border-[#ffe5b0]',
         labelTone: 'bg-[#ffe8b1] text-[#a25803]',
         badgeTone: 'bg-[#f5efe4] text-[#7a624c]',
-        image: '/images/book.jpg',
+        image: '/images/keycaps.webp',
+        category: 'Keebs'
+    },
+    {
+        label: 'Keebs',
+        badge: 'Toy',
+        title: 'Switch Silent',
+        description: 'Silent Silent Silent',
+        descriptionHtml:
+            '<li>35g bottom-out, lubed and filmed for hush</li>' +
+            '<li>Band-aid mod keeps the tactile bloom in check</li>' +
+            '<li>Ideal for late-night typing with zero thrash</li>',
+        tone: 'bg-[#fff8e3] border-[#ffe5b0]',
+        labelTone: 'bg-[#ffe8b1] text-[#a25803]',
+        badgeTone: 'bg-[#f5efe4] text-[#7a624c]',
+        image: '/images/switch.jpg',
         category: 'Keebs'
     },
     {
@@ -61,17 +94,21 @@ const cards = [
         labelTone: 'bg-[#ffd4eb] text-[#8f3a82]',
         badgeTone: 'bg-[#f4e2ef] text-[#7a4a69]',
         image: '/images/2b.jpg',
-        category: 'Wibu'
+        category: 'Wibu',
+        media: {
+            type: "strip",
+            images: ["/images/saba.jpg", "/images/matsuri.jpg", "/images/gura.jpg"],
+        },
     },
     {
         label: 'SETUP',
-        badge: 'Purple / Black',
-        title: 'Switch mang',
-        description: 'tai mang wifi hoi lo',
+        badge: 'Mouse',
+        title: 'Chuot co day',
+        description: 'chuot lo sap hu r',
         tone: 'bg-[#ecebff] border-[#d0ceff]',
         labelTone: 'bg-[#dcdcff] text-[#2b2a6a]',
         badgeTone: 'bg-[#f1efff] text-[#4a427f]',
-        image: '/images/2b.jpg',
+        image: '/images/gaming_mouse.png',
         category: 'Keebs'
     },
     {
@@ -118,7 +155,6 @@ const cards = [
                     <div class="flex-1">
                         <p class="text-lg font-semibold leading-tight text-[#1f2733]">Toi bi duoi khoi truong dai hoc (va co bang)</p>
                     </div>
-                    <i data-lucide="calendar" class="w-5 h-5 text-zinc-600"></i>
                     <a
                         class="rounded-2xl border border-transparent bg-white/70 p-2 text-[#6b6f7c] shadow-sm transition hover:border-[#d6d6d6] hover:text-[#3a3e4a]"
                         href="https://www.google.com/maps/search/?api=1&query=Grand+Engineering+Hall+West+Campus"
@@ -165,6 +201,16 @@ const cards = [
                         );
                       })}
                     </div>
+                    <img
+                        src={"/images/pepoclown-pepe.gif"}
+                        alt={"Pepe Clown"}
+                        width={500}
+                        height={500}
+                        sizes="(min-width: 640px, min-height: 300px) 320px, 100vw"
+                        class="object-center h-100 sm:h-full w-full rounded-[18px] object-cover"
+                        loading="lazy"
+                        decoding="async"
+                    />
                 </div>
             </section>
 
@@ -192,6 +238,7 @@ const cards = [
                 </div>
             </section>
 
+
             <section class="grid gap-5 sm:grid-cols-2">
                 {cards.map((card) => (
                     <article
@@ -200,7 +247,17 @@ const cards = [
                     >
                         <div class="px-4 pt-4">
                             <div class="overflow-hidden rounded-[22px] border border-white bg-white p-1 shadow-[0_12px_30px_rgba(15,23,42,0.15)]">
-                                <Image
+                                {card.media?.images ? (
+                                <div class="photo-strip">
+                                        {card.media.images.map((src, i) => (
+                                          <img
+                                            src={src}
+                                            class={`slice slice-${i + 1}`}
+                                            loading="lazy"
+                                          />
+                                        ))}
+                                      </div>
+                                ): (<Image
                                     src={card.image}
                                     alt={card.title}
                                     width={500}
@@ -208,7 +265,8 @@ const cards = [
                                     sizes="(min-width: 640px) 320px, 100vw"
                                     class="h-32 w-full rounded-[18px] object-cover"
                                     loading="lazy"
-                                />
+                                    decoding="async"
+                                />)}
                             </div>
                         </div>
                         <div class="flex h-full flex-1 flex-col gap-4 px-4 pt-4">
@@ -218,7 +276,14 @@ const cards = [
                             </div>
                             <div class="space-y-2">
                                 <h3 class="text-base font-semibold leading-snug text-[#1f2937]">{card.title}</h3>
-                                <p class="text-sm text-[#4c5565]">{card.description}</p>
+                                {card.descriptionHtml ? (
+                                    <ul
+                                        class="text-sm text-[#4c5565] list-disc space-y-1 pl-5"
+                                        set:html={card.descriptionHtml}
+                                    />
+                                ) : (
+                                    <p class="text-sm text-[#4c5565]">{card.description}</p>
+                                )}
                             </div>
                             <div class="h-px border-t border-dashed border-[#f0d2a8]" />
                             <div class="mt-auto flex items-center justify-between">
