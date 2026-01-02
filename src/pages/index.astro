@@ -1,16 +1,295 @@
 ---
+import Layout from "../layouts/Layout.astro";
+import { Calendar, Clock, MapPin } from "lucide-astro";
 
+const filters = [
+    { label: 'All', icon: '📦', active: true },
+    { label: 'Keebs', icon: '⌨️', active: false },
+    { label: 'Reads', icon: '📚', active: false },
+    { label: 'Gaming', icon: '🎮', active: false }
+];
+type IconKey = "calendar" | "clock" | "map-pin";
+const ceremonyDetails: {
+  label: string;
+  value: string;
+  caption: string;
+  icon: IconKey;
+}[] = [
+    { label: 'DATE', value: "Jan 25, '26", caption: 'Sunday', icon: 'calendar' },
+    { label: 'TIME', value: '10:30 AM', caption: 'Chac la tam gio nay xong le', icon: 'clock' },
+    { label: 'LOCATION', value: 'DH Su Pham Ki Thuat', caption: 'Sap bi doi ten thanh Cong Nghe Ki Thuat', icon: 'map-pin' },
+];
+
+const iconMap = {
+  'calendar': Calendar,
+  'clock': Clock,
+  'map-pin': MapPin,
+};
+
+const cards = [
+    {
+        label: 'PRIORITY',
+        badge: 'HARDWARE',
+        title: 'Keychron Q1 Pro Wireless',
+        description: '75% layout. Creamy switches needed.',
+        tone: 'bg-[#fff8e3] border-[#ffe5b0]',
+        labelTone: 'bg-[#ffe8b1] text-[#a25803]',
+        badgeTone: 'bg-[#f5efe4] text-[#7a624c]',
+        image: 'https://images.unsplash.com/photo-1527430253228-e93688616381?auto=format&fit=crop&w=900&q=60',
+        category: 'Keebs'
+    },
+    {
+        label: 'EDU',
+        badge: 'Paperback',
+        title: 'Designing Data-Intensive Apps',
+        description: 'Backend bible. Paperback.',
+        tone: 'bg-[#e5f0ff] border-[#cfe3ff]',
+        labelTone: 'bg-[#d6e7ff] text-[#194177]',
+        badgeTone: 'bg-[#eef5ff] text-[#3a4a6a]',
+        image: 'https://images.unsplash.com/photo-1513475382585-d06e58bcb0ea?auto=format&fit=crop&w=900&q=60',
+        category: 'Reads'
+    },
+    {
+        label: 'GRAIL',
+        badge: 'Collect',
+        title: 'Hololive Nendoroid',
+        description: 'Gen 3 member preferred.',
+        tone: 'bg-[#ffeef9] border-[#ffd1ea]',
+        labelTone: 'bg-[#ffd4eb] text-[#8f3a82]',
+        badgeTone: 'bg-[#f4e2ef] text-[#7a4a69]',
+        image: 'https://images.unsplash.com/photo-1602524205784-5a2ea41d9d11?auto=format&fit=crop&w=900&q=60',
+        category: 'Gaming'
+    },
+    {
+        label: 'READ',
+        badge: 'Manga',
+        title: 'Chainsaw Man Box Set',
+        description: 'Vols 1-11. Physical copy.',
+        tone: 'bg-[#e1fcdf] border-[#cdeac7]',
+        labelTone: 'bg-[#d9f3d8] text-[#1a6c37]',
+        badgeTone: 'bg-[#f1fbef] text-[#3e6f55]',
+        image: 'https://images.unsplash.com/photo-1470229538611-16ba8c7ffbd7?auto=format&fit=crop&w=900&q=60',
+        category: 'Reads'
+    },
+    {
+        label: 'SETUP',
+        badge: 'Purple / Black',
+        title: 'Coiled Aviator Cable',
+        description: 'Purple/Black colorway.',
+        tone: 'bg-[#ecebff] border-[#d0ceff]',
+        labelTone: 'bg-[#dcdcff] text-[#2b2a6a]',
+        badgeTone: 'bg-[#f1efff] text-[#4a427f]',
+        image: 'https://images.unsplash.com/photo-1527443224151-3f51cc3c0e66?auto=format&fit=crop&w=900&q=60',
+        category: 'Keebs'
+    },
+    {
+        label: 'SAFE',
+        badge: 'Gift Card',
+        title: 'Steam Gift Card',
+        description: 'For upcoming sales.',
+        tone: 'bg-[#e8f1ff] border-[#c8d8ef]',
+        labelTone: 'bg-[#dbe8ff] text-[#224d8c]',
+        badgeTone: 'bg-[#f0f4ff] text-[#5a6990]',
+        image: 'https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=900&q=60',
+        category: 'Gaming'
+    }
+];
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<Layout>
+    <main class="min-h-screen px-4 py-10 sm:px-6 lg:px-8">
+        <div class="mx-auto w-full max-w-5xl space-y-6">
+            <section class="rounded-4xl border border-[#f2dec4] bg-[#fff7df] px-6 py-6 shadow-[0_25px_45px_rgba(15,23,42,0.12)] backdrop-blur">
+                <div class="flex flex-wrap items-center justify-between gap-4">
+                    <div class="flex-1">
+                        <p class="text-lg font-semibold leading-tight text-[#1f2733]">Toi bi duoi khoi truong dai hoc (va co bang)</p>
+                    </div>
+                    <i data-lucide="calendar" class="w-5 h-5 text-zinc-600"></i>
+                    <a
+                        class="rounded-2xl border border-transparent bg-white/70 p-2 text-[#6b6f7c] shadow-sm transition hover:border-[#d6d6d6] hover:text-[#3a3e4a]"
+                        href="https://www.google.com/maps/search/?api=1&query=Grand+Engineering+Hall+West+Campus"
+                        target="_blank"
+                        rel="noreferrer"
+                        aria-label="Open ceremony location in Google Maps"
+                    >
+                        <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+                            <path
+                                d="M12 21s8-4.5 8-12a8 8 0 1 0-16 0c0 7.5 8 12 8 12Z"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                            />
+                            <circle cx="12" cy="8" r="2.5" stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                    </a>
+                </div>
+                <div class="mt-6 grid gap-2 text-[#1f2937]">
+                    <div class="grid grid-cols-2 gap-4">
+                      {ceremonyDetails.map((item, index) => {
+                        const isLast = index === ceremonyDetails.length - 1;
+                        const isOdd = ceremonyDetails.length % 2 === 1;
+                        const Icon = iconMap[item.icon];
+
+                        return (
+                          <div
+                            class={isLast && isOdd ? "col-span-2" : "flex"}
+                          >
+                          <div class="flex items-start gap-2 py-1">
+                              <div class="flex items-center gap-2">
+                                  <p class="text-sm font-semibold text-[#1f2937]">{<Icon/>}</p>
+                              </div>
+                              <div class="space-y-1.5 text-left">
+                                <p class="text-lg font-semibold text-[#14141b]">
+                                  {item.value}
+                                </p>
+                                <p class="text-sm text-[#4c5565]">
+                                  {item.caption}
+                                </p>
+                              </div>
+                          </div>
+
+                          </div>
+                        );
+                      })}
+                    </div>
+                </div>
+            </section>
+
+            <section class="rounded-4xl border border-[#f2dec4] bg-[#fff7df] px-6 py-6 shadow-[0_25px_45px_rgba(15,23,42,0.12)] backdrop-blur">
+                <div class="mt-4 overflow-hidden rounded-[22px] border border-[#f1e4c7] bg-white shadow-[0_12px_30px_rgba(15,23,42,0.08)]">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1164.9745656195105!2d106.7717415642758!3d10.850165915243517!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31752763f23816ab%3A0x282f711441b6916f!2zVHLGsOG7nW5nIMSQ4bqhaSBo4buNYyBTxrAgcGjhuqFtIEvhu7kgdGh14bqtdCBUaMOgbmggcGjhu5EgSOG7kyBDaMOtIE1pbmg!5e0!3m2!1svi!2s!4v1767372389507!5m2!1svi!2s" width="400" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+            </section>
+
+            <section class="rounded-4xl border border-[#f2dec4] bg-[#fff7df] px-4 py-5 shadow-[0_20px_40px_rgba(15,23,42,0.12)]">
+                <div class="flex flex-wrap items-center gap-3">
+                    {filters.map((filter) => (
+                        <button
+                            class={`flex items-center gap-2 rounded-[18px] px-5 py-2 text-sm font-semibold transition ${filter.active
+                                ? 'bg-[#1f2937] text-white shadow-[0_10px_35px_rgba(31,41,55,0.35)]'
+                                : 'bg-[#fff8df] text-[#1f1f26] shadow-[inset_0_0px_0_1px_rgba(0,0,0,0.03)] ring-1 ring-[#f5e4c2]'}`}
+                            type="button"
+                            data-filter={filter.label}
+                            aria-pressed={filter.active ? 'true' : 'false'}
+                        >
+                            <span>{filter.icon}</span>
+                            <span>{filter.label}</span>
+                        </button>
+                    ))}
+                </div>
+            </section>
+
+            <section class="grid gap-5 sm:grid-cols-2">
+                {cards.map((card) => (
+                    <article
+                        class={`flex h-full flex-col overflow-hidden rounded-[30px] border px-0 pb-4 shadow-[0_20px_45px_rgba(15,23,42,0.15)] ${card.tone}`}
+                        data-card-category={card.category ?? 'All'}
+                    >
+                        <div class="px-4 pt-4">
+                            <div class="overflow-hidden rounded-[22px] border border-white bg-white p-1 shadow-[0_12px_30px_rgba(15,23,42,0.15)]">
+                                <img
+                                    alt={card.title}
+                                    src={card.image}
+                                    class="h-32 w-full rounded-[18px] object-cover"
+                                    loading="lazy"
+                                />
+                            </div>
+                        </div>
+                        <div class="flex h-full flex-1 flex-col gap-4 px-4 pt-4">
+                            <div class="flex items-center justify-between text-[11px] font-semibold uppercase tracking-[0.4em]">
+                                <span class={`rounded-full px-3 py-1 text-[10px] ${card.labelTone}`}>{card.label}</span>
+                                <span class={`rounded-full px-2 py-1 text-[10px] font-semibold ${card.badgeTone}`}>{card.badge}</span>
+                            </div>
+                            <div class="space-y-2">
+                                <h3 class="text-base font-semibold leading-snug text-[#1f2937]">{card.title}</h3>
+                                <p class="text-sm text-[#4c5565]">{card.description}</p>
+                            </div>
+                            <div class="h-px border-t border-dashed border-[#f0d2a8]" />
+                            <div class="mt-auto flex items-center justify-between">
+                                <div class="flex items-center gap-3">
+                                    <button
+                                        type="button"
+                                        class="grid h-10 w-10 place-items-center rounded-full border border-white bg-white/85 text-[#4c5565] shadow-sm transition hover:translate-y-0.5 hover:border-[#d5d5d5]"
+                                        aria-label={`Inspect ${card.title}`}
+                                    >
+                                        <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                            <circle cx="10.5" cy="10.5" r="6.5" />
+                                            <line x1="16" y1="16" x2="22" y2="22" stroke-linecap="round" />
+                                        </svg>
+                                    </button>
+                                    <button
+                                        type="button"
+                                        class="grid h-10 w-10 place-items-center rounded-full border border-white bg-white/85 text-[#4c5565] shadow-sm transition hover:translate-y-0.5 hover:border-[#d5d5d5]"
+                                    >
+                                        <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                            <path d="M6 12l4 4 8-8" stroke-linecap="round" stroke-linejoin="round" />
+                                        </svg>
+                                    </button>
+                                </div>
+                                <div class="flex items-center gap-2">
+                                    <span class="h-2.5 w-2.5 rounded-full bg-[#c5c5c5]/70" />
+                                    <span class="h-2.5 w-2.5 rounded-full bg-[#c5c5c5]/30" />
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+                ))}
+            </section>
+        </div>
+        <script type="module">
+            document.addEventListener("DOMContentLoaded", () => {
+                const ACTIVE_CLASSES = [
+                    "bg-[#1f2937]",
+                    "text-white",
+                    "shadow-[0_10px_35px_rgba(31,41,55,0.35)]"
+                ];
+                const INACTIVE_CLASSES = [
+                    "bg-[#fff8df]",
+                    "text-[#1f1f26]",
+                    "shadow-[inset_0_0px_0_1px_rgba(0,0,0,0.03)]",
+                    "ring-1",
+                    "ring-[#f5e4c2]"
+                ];
+
+                const filterButtons = Array.from(document.querySelectorAll("[data-filter]"));
+                const cardElements = document.querySelectorAll("[data-card-category]");
+
+                if (filterButtons.length === 0) return;
+
+                const normalizeButton = (button, isActive) => {
+                    button.classList.remove(...ACTIVE_CLASSES, ...INACTIVE_CLASSES);
+                    if (isActive) {
+                        button.classList.add(...ACTIVE_CLASSES);
+                        button.setAttribute("aria-pressed", "true");
+                    } else {
+                        button.classList.add(...INACTIVE_CLASSES);
+                        button.setAttribute("aria-pressed", "false");
+                    }
+                };
+
+                const applyFilter = (filterValue) => {
+                    const normalizedFilter = filterValue ?? "All";
+                    cardElements.forEach((card) => {
+                        const matches = normalizedFilter === "All" || card.dataset.cardCategory === normalizedFilter;
+                        card.hidden = !matches;
+                        card.setAttribute("aria-hidden", matches ? "false" : "true");
+                    });
+                };
+
+                const setActiveButton = (button) => {
+                    if (!button) return;
+                    filterButtons.forEach((btn) => normalizeButton(btn, btn === button));
+                    applyFilter(button.dataset.filter);
+                };
+
+                const defaultActive =
+                    filterButtons.find((btn) => btn.getAttribute("aria-pressed") === "true") ?? filterButtons[0];
+
+                filterButtons.forEach((button) => {
+                    button.addEventListener("click", () => setActiveButton(button));
+                });
+
+                setActiveButton(defaultActive);
+            });
+        </script>
+    </main>
+</Layout>
