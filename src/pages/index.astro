@@ -1,6 +1,7 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import { Calendar, Clock, MapPin } from "lucide-astro";
+import { Image } from "@astrojs/image/components";
 
 const filters = [
     { label: 'All', icon: '📦', active: true },
@@ -186,9 +187,12 @@ const cards = [
                     >
                         <div class="px-4 pt-4">
                             <div class="overflow-hidden rounded-[22px] border border-white bg-white p-1 shadow-[0_12px_30px_rgba(15,23,42,0.15)]">
-                                <img
-                                    alt={card.title}
+                                <Image
                                     src={card.image}
+                                    alt={card.title}
+                                    width={500}
+                                    height={300}
+                                    sizes="(min-width: 640px) 320px, 100vw"
                                     class="h-32 w-full rounded-[18px] object-cover"
                                     loading="lazy"
                                 />
