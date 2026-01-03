@@ -65,7 +65,7 @@ const cards: {
         title: 'Switch',
         description: 'hehehehe',
         descriptionHtml:
-            '<li>cái nào cũng ok</li>',
+            '<li>cái nào cũng ok</li>',
         tone: 'bg-[#fff8e3] border-[#ffe5b0]',
         labelTone: 'bg-[#ffe8b1] text-[#a25803]',
         badgeTone: 'bg-[#f5efe4] text-[#7a624c]',
@@ -162,7 +162,7 @@ const cards: {
                     </div>
                     <a
                         class="rounded-2xl border border-transparent bg-white/70 p-2 text-[#6b6f7c] shadow-sm transition hover:border-[#d6d6d6] hover:text-[#3a3e4a]"
-                        href="https://www.google.com/maps/search/?api=1&query=Grand+Engineering+Hall+West+Campus"
+                        href="https://maps.app.goo.gl/jy3Qj2kadiyFSfqG7"
                         target="_blank"
                         rel="noreferrer"
                         aria-label="Open ceremony location in Google Maps"
@@ -206,9 +206,18 @@ const cards: {
                         );
                       })}
                     </div>
-                    <img
+                    <!-- <img
                         src={"/images/pepoclown-pepe.gif"}
                         alt={"Pepe Clown"}
+                        class="object-center h-full lg:h-100 w-full rounded-[18px] object-cover"
+                        loading="lazy"
+                        decoding="async"
+                    /> -->
+                    <Image 
+                        src={"/images/me.jpg"}
+                        alt={"me"}
+                        width={500}
+                        height={500}
                         class="object-center h-full lg:h-100 w-full rounded-[18px] object-cover"
                         loading="lazy"
                         decoding="async"
@@ -218,107 +227,126 @@ const cards: {
 
             <section class="rounded-4xl border border-[#f2dec4] bg-[#fff7df] px-6 py-6 shadow-[0_25px_45px_rgba(15,23,42,0.12)] backdrop-blur">
                 <div class="mt-4 overflow-hidden rounded-[22px] border border-[#f1e4c7] bg-white shadow-[0_12px_30px_rgba(15,23,42,0.08)]">
-                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1164.9745656195105!2d106.7717415642758!3d10.850165915243517!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31752763f23816ab%3A0x282f711441b6916f!2zVHLGsOG7nW5nIMSQ4bqhaSBo4buNYyBTxrAgcGjhuqFtIEvhu7kgdGh14bqtdCBUaMOgbmggcGjhu5EgSOG7kyBDaMOtIE1pbmg!5e0!3m2!1svi!2s!4v1767372389507!5m2!1svi!2s" width="400" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1164.9745656195105!2d106.7717415642758!3d10.850165915243517!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31752763f23816ab%3A0x282f711441b6916f!2zVHLGsOG7nW5nIMSQ4bqhaSBo4buNYyBTxrAgcGjhuqFtIEvhu7kgdGh14bqtdCBUaMOgbmggcGjhu5EgSOG7kyBDaMOtIE1pbmg!5e0!3m2!1svi!2s!4v1767372389507!5m2!1svi!2s"
+                        class="h-72 w-full min-h-7h"
+                        style="border:0;"
+                        allowfullscreen=""
+                        loading="lazy"
+                        referrerpolicy="no-referrer-when-downgrade"
+                        title="Google Maps"
+                    ></iframe>
                 </div>
             </section>
 
             <section class="rounded-4xl border border-[#f2dec4] bg-[#fff7df] px-4 py-5 shadow-[0_20px_40px_rgba(15,23,42,0.12)]">
-                <div class="flex flex-wrap items-center gap-3">
-                    {filters.map((filter) => (
-                        <button
-                            class={`flex items-center gap-2 rounded-[18px] px-5 py-2 text-sm font-semibold transition ${filter.active
-                                ? 'bg-[#1f2937] text-white shadow-[0_10px_35px_rgba(31,41,55,0.35)]'
-                                : 'bg-[#fff8df] text-[#1f1f26] shadow-[inset_0_0px_0_1px_rgba(0,0,0,0.03)] ring-1 ring-[#f5e4c2]'}`}
-                            type="button"
-                            data-filter={filter.label}
-                            aria-pressed={filter.active ? 'true' : 'false'}
-                        >
-                            <span>{filter.icon}</span>
-                            <span>{filter.label}</span>
-                        </button>
-                    ))}
-                </div>
-            </section>
-
-
-            <section class="grid gap-5 sm:grid-cols-2">
-                {cards.map((card) => (
-                    <article
-                        class={`flex h-full flex-col overflow-hidden rounded-[30px] border px-0 pb-4 shadow-[0_20px_45px_rgba(15,23,42,0.15)] ${card.tone}`}
-                        data-card-category={card.category ?? 'All'}
-                    >
-                        <div class="px-4 pt-4">
-                            <div class="overflow-hidden rounded-[22px] border border-white bg-white p-1 shadow-[0_12px_30px_rgba(15,23,42,0.15)]">
-                                {card.media?.images ? (
-                                <div class="photo-strip">
-                                        {card.media.images.map((src, i) => (
-                                          <img
-                                            src={src}
-                                            class={`slice slice-${i + 1}`}
-                                            loading="lazy"
-                                          />
-                                        ))}
-                                      </div>
-                                ): (<Image
-                                    src={card.image}
-                                    alt={card.title}
-                                    width={500}
-                                    height={300}
-                                    sizes="(min-width: 640px) 320px, 100vw"
-                                    class="h-32 w-full rounded-[18px] object-cover"
-                                    loading="lazy"
-                                    decoding="async"
-                                />)}
-                            </div>
+                <details class="group rounded-[28px] border border-[#f1e4c7] bg-white p-4 shadow-[0_12px_30px_rgba(15,23,42,0.08)]">
+                    <summary class="flex cursor-pointer items-center justify-between gap-3 rounded-[20px] border border-transparent px-4 py-3 text-sm font-semibold text-[#1f2937] transition hover:border-[#e2d5c0]" aria-label="Toggle wishlist filters and cards">
+                        <div>
+                            <p class="text-xs font-normal text-[#6c7284]">👉👈</p>
                         </div>
-                        <div class="flex h-full flex-1 flex-col gap-4 px-4 pt-4">
-                            <div class="flex items-center justify-between text-[11px] font-semibold uppercase tracking-[0.4em]">
-                                <span class={`rounded-full px-3 py-1 text-[10px] ${card.labelTone}`}>{card.label}</span>
-                                <span class={`rounded-full px-2 py-1 text-[10px] font-semibold ${card.badgeTone}`}>{card.badge}</span>
-                            </div>
-                            <div class="space-y-2">
-                                <h3 class="text-base font-semibold leading-snug text-[#1f2937]">{card.title}</h3>
-                                {card.descriptionHtml ? (
-                                    <ul
-                                        class="text-sm text-[#4c5565] list-disc space-y-1 pl-5"
-                                        set:html={card.descriptionHtml}
-                                    />
-                                ) : (
-                                    <p class="text-sm text-[#4c5565]">{card.description}</p>
-                                )}
-                            </div>
-                            <div class="h-px border-t border-dashed border-[#f0d2a8]" />
-                            <div class="mt-auto flex items-center justify-between">
-                                <div class="flex items-center gap-3">
-                                    <button
-                                        type="button"
-                                        class="grid h-10 w-10 place-items-center rounded-full border border-white bg-white/85 text-[#4c5565] shadow-sm transition hover:translate-y-0.5 hover:border-[#d5d5d5]"
-                                        aria-label={`Inspect ${card.title}`}
-                                    >
-                                        <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                                            <circle cx="10.5" cy="10.5" r="6.5" />
-                                            <line x1="16" y1="16" x2="22" y2="22" stroke-linecap="round" />
-                                        </svg>
-                                    </button>
-                                    <button
-                                        type="button"
-                                        class="grid h-10 w-10 place-items-center rounded-full border border-white bg-white/85 text-[#4c5565] shadow-sm transition hover:translate-y-0.5 hover:border-[#d5d5d5]"
-                                    >
-                                        <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                                            <path d="M6 12l4 4 8-8" stroke-linecap="round" stroke-linejoin="round" />
-                                        </svg>
-                                    </button>
-                                </div>
-                                <div class="flex items-center gap-2">
-                                    <span class="h-2.5 w-2.5 rounded-full bg-[#c5c5c5]/70" />
-                                    <span class="h-2.5 w-2.5 rounded-full bg-[#c5c5c5]/30" />
-                                </div>
-                            </div>
+                        <span class="text-2xl leading-none transition-transform" aria-hidden="true">⌄</span>
+                    </summary>
+                    <div class="mt-5 space-y-5">
+                        <!-- <div class="flex flex-wrap items-center gap-3">
+                            {filters.map((filter) => (
+                                <button
+                                    class={`flex items-center gap-2 rounded-[18px] px-5 py-2 text-sm font-semibold transition ${filter.active
+                                        ? 'bg-[#1f2937] text-white shadow-[0_10px_35px_rgba(31,41,55,0.35)]'
+                                        : 'bg-[#fff8df] text-[#1f1f26] shadow-[inset_0_0px_0_1px_rgba(0,0,0,0.03)] ring-1 ring-[#f5e4c2]'}`}
+                                    type="button"
+                                    data-filter={filter.label}
+                                    aria-pressed={filter.active ? 'true' : 'false'}
+                                >
+                                    <span>{filter.icon}</span>
+                                    <span>{filter.label}</span>
+                                </button>
+                            ))}
+                        </div> -->
+                        <div class="grid gap-5 sm:grid-cols-2">
+                            {cards.map((card) => (
+                                <article
+                                    class={`flex h-full flex-col overflow-hidden rounded-[30px] border px-0 pb-4 shadow-[0_20px_45px_rgba(15,23,42,0.15)] ${card.tone}`}
+                                    data-card-category={card.category ?? 'All'}
+                                >
+                                    <div class="px-4 pt-4">
+                                        <div class="overflow-hidden rounded-[22px] border border-white bg-white p-1 shadow-[0_12px_30px_rgba(15,23,42,0.15)]">
+                                            {card.media?.images ? (
+                                            <div class="photo-strip">
+                                                    {card.media.images.map((src, i) => (
+                                                      <img
+                                                        src={src}
+                                                        class={`slice slice-${i + 1}`}
+                                                        loading="lazy"
+                                                        alt={card.title}
+                                                      />
+                                                    ))}
+                                                  </div>
+                                            ): (<Image
+                                                src={card.image}
+                                                alt={card.title}
+                                                width={500}
+                                                height={300}
+                                                sizes="(min-width: 640px) 320px, 100vw"
+                                                class="h-32 w-full rounded-[18px] object-cover"
+                                                loading="lazy"
+                                                decoding="async"
+                                            />)}
+                                        </div>
+                                    </div>
+                                    <div class="flex h-full flex-1 flex-col gap-4 px-4 pt-4">
+                                        <div class="flex items-center justify-between text-[11px] font-semibold uppercase tracking-[0.4em]">
+                                            <span class={`rounded-full px-3 py-1 text-[10px] ${card.labelTone}`}>{card.label}</span>
+                                            <span class={`rounded-full px-2 py-1 text-[10px] font-semibold ${card.badgeTone}`}>{card.badge}</span>
+                                        </div>
+                                        <div class="space-y-2">
+                                            <h3
+                                                class="text-base font-semibold leading-snug text-[#1f2937]"
+                                                aria-label={card.title}
+                                            >{card.title}</h3>
+                                            {card.descriptionHtml ? (
+                                                <ul
+                                                    class="text-sm text-[#4c5565] list-disc space-y-1 pl-5"
+                                                    set:html={card.descriptionHtml}
+                                                />
+                                            ) : (
+                                                <p class="text-sm text-[#4c5565]">{card.description}</p>
+                                            )}
+                                        </div>
+                                        <div class="h-px border-t border-dashed border-[#f0d2a8]" />
+                                        <div class="mt-auto flex items-center justify-between">
+                                            <div class="flex items-center gap-3">
+                                                <button
+                                                    type="button"
+                                                    class="grid h-10 w-10 place-items-center rounded-full border border-white bg-white/85 text-[#4c5565] shadow-sm transition hover:translate-y-0.5 hover:border-[#d5d5d5]"
+                                                    aria-label={`Inspect ${card.title}`}
+                                                >
+                                                    <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                                        <circle cx="10.5" cy="10.5" r="6.5" />
+                                                        <line x1="16" y1="16" x2="22" y2="22" stroke-linecap="round" />
+                                                    </svg>
+                                                </button>
+                                                <button
+                                                    type="button"
+                                                    class="grid h-10 w-10 place-items-center rounded-full border border-white bg-white/85 text-[#4c5565] shadow-sm transition hover:translate-y-0.5 hover:border-[#d5d5d5]"
+                                                >
+                                                    <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                                        <path d="M6 12l4 4 8-8" stroke-linecap="round" stroke-linejoin="round" />
+                                                    </svg>
+                                                </button>
+                                            </div>
+                                            <div class="flex items-center gap-2">
+                                                <span class="h-2.5 w-2.5 rounded-full bg-[#c5c5c5]/70" />
+                                                <span class="h-2.5 w-2.5 rounded-full bg-[#c5c5c5]/30" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </article>
+                            ))}
                         </div>
-                    </article>
-                ))}
+                    </div>
+                </details>
             </section>
-        </div>
         <script type="module">
             document.addEventListener("DOMContentLoaded", () => {
                 const ACTIVE_CLASSES = [
@@ -375,5 +403,14 @@ const cards: {
                 setActiveButton(defaultActive);
             });
         </script>
+        <style>
+            details > summary span {
+                transition: transform 0.25s ease;
+            }
+
+            details[open] > summary span {
+                transform: rotate(-90deg);
+            }
+        </style>
     </main>
 </Layout>
