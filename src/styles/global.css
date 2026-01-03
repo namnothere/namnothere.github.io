@@ -21,7 +21,7 @@ body {
     color: #1f2937;
 }
 
-@layer components {
+/*@layer components {
   .strip {
     @apply flex overflow-hidden rounded-xl;
     transform: skewX(-6deg);
@@ -34,7 +34,7 @@ body {
     .strip img:not(:last-child) {
     box-shadow: inset -10px 0 10px -10px rgba(0,0,0,0.25);
     }
-}
+}*/
 
 .photo-strip {
     /*@apply absolute inset-0;*/

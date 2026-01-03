@@ -18,8 +18,8 @@ const ceremonyDetails: {
   icon: IconKey;
 }[] = [
     { label: 'DATE', value: "Jan 25, '26", caption: 'Sunday', icon: 'calendar' },
-    { label: 'TIME', value: '10:30 AM', caption: 'Chac la tam gio nay xong le', icon: 'clock' },
-    { label: 'LOCATION', value: 'DH Su Pham Ki Thuat', caption: 'Sap bi doi ten thanh Cong Nghe Ki Thuat', icon: 'map-pin' },
+    { label: 'TIME', value: '10:30 AM', caption: 'Tầm giờ này xong lễ', icon: 'clock' },
+    { label: 'LOCATION', value: 'ĐH Sư phạm Kỹ thuật', caption: 'Sắp bị đổi tên thành Công nghệ Kỹ thuật', icon: 'map-pin' },
 ];
 
 const iconMap = {
@@ -50,9 +50,9 @@ const cards: {
         title: 'Keycaps ABS/PBT',
         description: '1 ngon ngu en/2 ngon ngu en/jp. prefer blue/yellow/white mix',
         descriptionHtml:
-            '<li>ABS base + PBT top for a satisfying press</li>' +
-            '<li>Dual English/Japanese legends for multilingual layers</li>' +
-            '<li>Blue, yellow, and white mix for a playful theme</li>',
+            '<li>ABS/PBT</li>' +
+            '<li>EN or EN/JP</li>' +
+            '<li>Xanh/vàng/trắng mix</li>',
         tone: 'bg-[#fff8e3] border-[#ffe5b0]',
         labelTone: 'bg-[#ffe8b1] text-[#a25803]',
         badgeTone: 'bg-[#f5efe4] text-[#7a624c]',
@@ -62,12 +62,10 @@ const cards: {
     {
         label: 'Keebs',
         badge: 'Toy',
-        title: 'Switch Silent',
-        description: 'Silent Silent Silent',
+        title: 'Switch',
+        description: 'hehehehe',
         descriptionHtml:
-            '<li>35g bottom-out, lubed and filmed for hush</li>' +
-            '<li>Band-aid mod keeps the tactile bloom in check</li>' +
-            '<li>Ideal for late-night typing with zero thrash</li>',
+            '<li>cái nào cũng ok</li>',
         tone: 'bg-[#fff8e3] border-[#ffe5b0]',
         labelTone: 'bg-[#ffe8b1] text-[#a25803]',
         badgeTone: 'bg-[#f5efe4] text-[#7a624c]',
@@ -77,8 +75,11 @@ const cards: {
     {
         label: 'Book',
         badge: 'hong biet nua',
-        title: 'Sach ki thuat',
+        title: 'Sách kĩ thuật',
         description: 'Backend bible. Paperback.',
+        descriptionHtml: '<li>Xe F1</li>' +
+            '<li>IT nói chung</li>' +
+            '<li>Game Design</li>',
         tone: 'bg-[#e5f0ff] border-[#cfe3ff]',
         labelTone: 'bg-[#d6e7ff] text-[#194177]',
         badgeTone: 'bg-[#eef5ff] text-[#3a4a6a]',
@@ -88,8 +89,12 @@ const cards: {
     {
         label: 'Wibu',
         badge: 'Figure',
-        title: 'Saba/Gura/Matsuri',
+        title: 'Saba/Matsuri/Gura',
         description: 'standee/figure/card/lot chuot/etc cai gi cung duoc chi can co hinh may con nho anime',
+        descriptionHtml: '<li>Standee</li>' +
+            '<li>Figure</li>' +
+            '<li>lót chuột</li>' +
+            '<li>cái nào cũng ok chỉ cần có hình mấy nhỏ anime</li>',
         tone: 'bg-[#ffeef9] border-[#ffd1ea]',
         labelTone: 'bg-[#ffd4eb] text-[#8f3a82]',
         badgeTone: 'bg-[#f4e2ef] text-[#7a4a69]',
@@ -103,8 +108,8 @@ const cards: {
     {
         label: 'SETUP',
         badge: 'Mouse',
-        title: 'Chuot co day',
-        description: 'chuot lo sap hu r',
+        title: 'Chuột',
+        description: 'có dây',
         tone: 'bg-[#ecebff] border-[#d0ceff]',
         labelTone: 'bg-[#dcdcff] text-[#2b2a6a]',
         badgeTone: 'bg-[#f1efff] text-[#4a427f]',
@@ -153,7 +158,7 @@ const cards: {
             <section class="rounded-4xl border border-[#f2dec4] bg-[#fff7df] px-6 py-6 shadow-[0_25px_45px_rgba(15,23,42,0.12)] backdrop-blur">
                 <div class="flex flex-wrap items-center justify-between gap-4">
                     <div class="flex-1">
-                        <p class="text-lg font-semibold leading-tight text-[#1f2733]">Toi bi duoi khoi truong dai hoc (va co bang)</p>
+                        <p class="text-lg font-semibold leading-tight text-[#1f2733]">Tôi bị đuổi khỏi trường đại học (và có bằng)</p>
                     </div>
                     <a
                         class="rounded-2xl border border-transparent bg-white/70 p-2 text-[#6b6f7c] shadow-sm transition hover:border-[#d6d6d6] hover:text-[#3a3e4a]"
@@ -204,10 +209,7 @@ const cards: {
                     <img
                         src={"/images/pepoclown-pepe.gif"}
                         alt={"Pepe Clown"}
-                        width={500}
-                        height={500}
-                        sizes="(min-width: 640px, min-height: 300px) 320px, 100vw"
-                        class="object-center h-100 sm:h-full w-full rounded-[18px] object-cover"
+                        class="object-center h-full lg:h-100 w-full rounded-[18px] object-cover"
                         loading="lazy"
                         decoding="async"
                     />
