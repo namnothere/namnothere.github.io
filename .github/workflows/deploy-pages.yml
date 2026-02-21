@@ -3,8 +3,7 @@ name: Deploy To GitHub Pages
 on:
   push:
     branches:
-      - main
-      - master
+      - leesee 
   workflow_dispatch:
 
 permissions:
